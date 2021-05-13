@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Contact Form</title>
+    <link href="../css/blue.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-1.2.6.min.js" type="text/javascript"></script>
+    <script src="js/jquery.validate.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#contactform").validate();
+        });
+    </script>
+</head>
+
+<body class="contact">
+<form action="contactengine.php" id="contactform" method="post">
+
+    <label for="Name">Name:</label>
+
+    <input class="required" id="Name" name="Name" type="text"/>
+
+    <label for="Email">Email:</label>
+
+    <input class="required email" id="Email" name="Email" type="text"/>
+
+    <label for="Message">Message:</label>
+
+    <textarea class="required" cols="20" id="Message" name="Message" rows="10"></textarea>
+    <div class="clear"></div>
+    <input class="submit-button" name="submit" type="submit" value=""/>
+</form>
+
+</body>
+</html>
