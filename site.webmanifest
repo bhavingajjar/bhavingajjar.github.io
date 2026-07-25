@@ -1,0 +1,17 @@
+{
+  "name": "Bhavin Gajjar — Senior PHP / Laravel Developer",
+  "short_name": "Bhavin Gajjar",
+  "description": "Backend-focused Software Engineer with 8+ years in PHP, Laravel, Node.js, and REST APIs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F0E6",
+  "theme_color": "#0F3D2E",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
