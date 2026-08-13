@@ -5,25 +5,49 @@
   const header = document.querySelector(".site-header");
   const nav = document.getElementById("site-nav");
   const toggle = document.querySelector(".nav-toggle");
+  const backdrop = document.querySelector(".nav-backdrop");
+  const desktopQuery = window.matchMedia("(min-width: 861px)");
 
   const setNavOpen = (open) => {
     if (!nav || !toggle) return;
+
     nav.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    backdrop?.classList.toggle("is-visible", open);
+    document.body.classList.toggle("nav-open", open);
+
+    if (backdrop) {
+      backdrop.hidden = !open;
+      backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+    }
   };
+
+  const closeNav = () => setNavOpen(false);
 
   toggle?.addEventListener("click", () => {
     setNavOpen(!nav.classList.contains("is-open"));
   });
 
+  backdrop?.addEventListener("click", closeNav);
+
   nav?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setNavOpen(false));
+    link.addEventListener("click", closeNav);
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setNavOpen(false);
+    if (event.key === "Escape") closeNav();
   });
+
+  const handleViewportChange = () => {
+    if (desktopQuery.matches) closeNav();
+  };
+
+  if (typeof desktopQuery.addEventListener === "function") {
+    desktopQuery.addEventListener("change", handleViewportChange);
+  } else {
+    desktopQuery.addListener(handleViewportChange);
+  }
 
   const onScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 12);
