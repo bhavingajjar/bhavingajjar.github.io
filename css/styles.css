@@ -236,7 +236,35 @@ a:focus-visible {
   margin: 0 auto;
   padding: 4.5rem 1.25rem 5.5rem;
   color: var(--slate-50);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 22rem);
+  align-items: center;
+  gap: 2.5rem 3.25rem;
   animation: heroIn 0.9s var(--ease) both;
+}
+
+.hero__copy {
+  min-width: 0;
+}
+
+.hero__portrait {
+  margin: 0;
+  justify-self: end;
+}
+
+.hero__portrait img {
+  display: block;
+  width: min(22rem, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 12%;
+  border-radius: 50%;
+  border: 3px solid rgba(96, 165, 250, 0.55);
+  box-shadow:
+    0 0 0 10px rgba(248, 250, 252, 0.05),
+    0 24px 56px rgba(2, 6, 23, 0.45);
+  background: var(--slate-800);
 }
 
 .hero__location {
@@ -743,8 +771,27 @@ a:focus-visible {
   }
 
   .hero__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
     padding-top: 3.5rem;
     padding-bottom: 4.5rem;
+    gap: 2rem;
+  }
+
+  .hero__portrait {
+    order: -1;
+    justify-self: center;
+  }
+
+  .hero__portrait img {
+    width: min(13.5rem, 58vw);
+  }
+
+  .hero__headline,
+  .hero__lede {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero__atmosphere::after {
@@ -752,6 +799,7 @@ a:focus-visible {
   }
 
   .hero__ctas {
+    justify-content: center;
     flex-direction: column;
   }
 
@@ -846,6 +894,20 @@ a:focus-visible {
     color: black;
     padding: 0 0 1rem;
     animation: none;
+    grid-template-columns: auto 1fr;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .hero__portrait {
+    order: 0;
+    justify-self: start;
+  }
+
+  .hero__portrait img {
+    width: 5.5rem;
+    border: 1px solid #ccc;
+    box-shadow: none;
   }
 
   .hero__name,
