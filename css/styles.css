@@ -60,6 +60,11 @@ body.nav-open {
   overflow: hidden;
 }
 
+body.nav-open .mobile-dock {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -849,12 +854,15 @@ a:focus-visible {
   transform: none;
 }
 
+/* Opacity-only reveal — avoid transform on header so fixed nav
+   is never trapped in a transformed containing block */
 .site-header[data-reveal] {
-  transform: translateY(-100%);
+  opacity: 0;
+  transform: none;
 }
 
 .site-header[data-reveal].is-visible {
-  transform: none;
+  opacity: 1;
 }
 
 @keyframes heroIn {
@@ -924,18 +932,29 @@ a:focus-visible {
     display: none !important;
   }
 
+  /* Nav lives outside header in the DOM; pin it into the header row on desktop */
   .site-nav {
-    position: static;
-    inset: auto;
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 205;
+    height: var(--header-h);
+    max-width: var(--max);
+    width: 100%;
+    margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
     gap: 0.35rem 1.15rem;
-    padding: 0;
+    padding: 0 1.25rem;
+    padding-left: calc(1.25rem + env(safe-area-inset-left));
+    padding-right: calc(1.25rem + env(safe-area-inset-right));
     background: transparent;
     transform: none;
     opacity: 1;
     visibility: visible;
     overflow: visible;
+    pointer-events: none;
   }
 
   .site-nav.is-open {
@@ -950,6 +969,7 @@ a:focus-visible {
     min-height: auto;
     display: inline;
     border-bottom: 0;
+    pointer-events: auto;
   }
 
   .site-nav a:hover,
